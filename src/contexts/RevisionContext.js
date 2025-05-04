@@ -19,23 +19,34 @@ export const RevisionProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // This is where you would fetch data from Firebase or another backend
-    // For now, we'll use the mock data
-    const fetchData = async () => {
-      try {
-        // Simulate API delay
-        await new Promise(resolve => setTimeout(resolve, 500));
-        
-        setRevisionSessions(mockRevisionSessions);
-        setIsLoading(false);
-      } catch (err) {
-        setError('Failed to load revision sessions');
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+    setIsLoading(true);
+    
+    // Create a reference to the collection
+    const sessionsRef = collection(db, 'revisionSessions');
+    
+    // Set up real-time listener
+    const unsubscribe = onSnapshot(sessionsRef, (querySnapshot) => {
+      const sessions = [];
+      querySnapshot.forEach((doc) => {
+        // Convert Firestore timestamp to JS Date
+        const data = doc.data();
+        sessions.push({
+          id: doc.id,
+          ...data,
+          date: data.date.toDate().toISOString() // Convert Timestamp to ISO string
+        });
+      });
+      
+      setRevisionSessions(sessions);
+      setIsLoading(false);
+    }, (error) => {
+      setError(error.message);
+      setIsLoading(false);
+    });
+    
+    // Clean up the listener on unmount
+    return () => unsubscribe();
+  }, []); // No dependencies needed for a single user
 
   // Function to get today's sessions
   const getTodaySessions = () => {
@@ -82,39 +93,68 @@ export const RevisionProvider = ({ children }) => {
   };
 
   // Function to add a new session
-  const addSession = (newSession) => {
-    const updatedSessions = [...revisionSessions, { ...newSession, id: Date.now().toString() }];
-    setRevisionSessions(updatedSessions);
-    
-    // Here you would also save to Firebase or your backend
+  const addSession = async (newSession) => {
+    console.log("Adding new session:")
+    console.log(JSON.stringify(newSession))
+    try {
+      // Convert date string to Firestore timestamp
+      const sessionToAdd = {
+        ...newSession,
+        date: Timestamp.fromDate(new Date(newSession.date)),
+        createdAt: Timestamp.now()
+      };
+      
+      // Add to Firestore
+      await addDoc(collection(db, 'revisionSessions'), sessionToAdd);
+      // The onSnapshot listener will automatically update the local state
+    } catch (err) {
+      setError('Failed to add session: ' + err.message);
+    }
   };
 
   // Function to update an existing session
-  const updateSession = (id, updatedSession) => {
-    const updatedSessions = revisionSessions.map(session => 
-      session.id === id ? { ...session, ...updatedSession } : session
-    );
-    setRevisionSessions(updatedSessions);
-    
-    // Here you would also update in Firebase or your backend
+  const updateSession = async (id, updatedSession) => {
+    try {
+      // If the update includes a date, convert it to a Timestamp
+      const updates = {...updatedSession};
+      if (updates.date) {
+        updates.date = Timestamp.fromDate(new Date(updates.date));
+      }
+      
+      // Update in Firestore
+      const sessionRef = doc(db, 'revisionSessions', id);
+      await updateDoc(sessionRef, updates);
+      // The onSnapshot listener will automatically update the local state
+    } catch (err) {
+      setError('Failed to update session: ' + err.message);
+    }
   };
 
   // Function to delete a session
-  const deleteSession = (id) => {
-    const updatedSessions = revisionSessions.filter(session => session.id !== id);
-    setRevisionSessions(updatedSessions);
-    
-    // Here you would also delete from Firebase or your backend
+  const deleteSession = async (id) => {
+    try {
+      // Delete from Firestore
+      const sessionRef = doc(db, 'revisionSessions', id);
+      await deleteDoc(sessionRef);
+      // The onSnapshot listener will automatically update the local state
+    } catch (err) {
+      setError('Failed to delete session: ' + err.message);
+    }
   };
 
   // Function to mark a session as completed
-  const completeSession = (id) => {
-    const updatedSessions = revisionSessions.map(session => 
-      session.id === id ? { ...session, completed: true } : session
-    );
-    setRevisionSessions(updatedSessions);
-    
-    // Here you would also update in Firebase or your backend
+  const completeSession = async (id) => {
+    try {
+      // Mark as completed in Firestore
+      const sessionRef = doc(db, 'revisionSessions', id);
+      await updateDoc(sessionRef, {
+        completed: true,
+        completedAt: Timestamp.now()
+      });
+      // The onSnapshot listener will automatically update the local state
+    } catch (err) {
+      setError('Failed to mark session as completed: ' + err.message);
+    }
   };
 
   return (

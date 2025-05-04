@@ -1,188 +1,421 @@
-/* WeeklyView.css - Styles for Weekly View Component */
+/* WeeklyView.css */
+.weekly-view {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Roboto', 'Segoe UI', 'Arial', sans-serif;
+}
 
+.weekly-view h2 {
+  color: #2c3e50;
+  margin-bottom: 24px;
+  font-size: 28px;
+  font-weight: 600;
+  border-bottom: 2px solid #eaeaea;
+  padding-bottom: 12px;
+}
+
+/* Week calendar styling */
 .week-calendar {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 0.5rem;
-    margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.day-column {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px solid transparent;
+}
+
+.day-column:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+}
+
+.day-column.today {
+  border-color: #3498db;
+}
+
+.day-column.selected {
+  border-color: #2ecc71;
+  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.15);
+}
+
+.day-header {
+  background-color: #f8f9fa;
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.day-name {
+  color: #7f8c8d;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.day-number {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 4px 0;
+}
+
+.day-month {
+  color: #7f8c8d;
+  font-size: 14px;
+}
+
+.day-sessions {
+  padding: 15px;
+}
+
+.session-count {
+  font-size: 14px;
+  color: #7f8c8d;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.session-indicators {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+
+.session-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #95a5a6;
+}
+
+.session-indicator.priority-high {
+  background-color: #e74c3c;
+}
+
+.session-indicator.priority-medium {
+  background-color: #f39c12;
+}
+
+.session-indicator.priority-low {
+  background-color: #3498db;
+}
+
+.session-indicator.completed {
+  background-color: #2ecc71;
+}
+
+/* Selected day sessions */
+.selected-day-sessions {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  padding: 24px;
+  margin-top: 30px;
+}
+
+.selected-day-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.selected-day-sessions h3 {
+  color: #2c3e50;
+  font-size: 20px;
+  margin: 0;
+}
+
+.add-session-button {
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-session-button:hover {
+  background-color: #27ae60;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(46, 204, 113, 0.2);
+}
+
+.day-session-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.day-session-card {
+  display: flex;
+  align-items: center;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 16px;
+  transition: transform 0.2s ease;
+  border-left: 4px solid #95a5a6;
+}
+
+.day-session-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.day-session-card.priority-high {
+  border-left-color: #e74c3c;
+}
+
+.day-session-card.priority-medium {
+  border-left-color: #f39c12;
+}
+
+.day-session-card.priority-low {
+  border-left-color: #3498db;
+}
+
+.day-session-card.completed {
+  opacity: 0.7;
+}
+
+.session-time {
+  width: 150px;
+  font-weight: 500;
+  color: #34495e;
+}
+
+.session-title {
+  flex-grow: 1;
+}
+
+.session-title h4 {
+  margin: 0 0 6px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.session-topic {
+  color: #7f8c8d;
+  font-size: 14px;
+}
+
+.session-duration {
+  color: #7f8c8d;
+  font-weight: 500;
+  padding: 0 15px;
+}
+
+.session-status {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.session-status.pending {
+  background-color: #f1c40f;
+  color: #34495e;
+}
+
+.session-status.completed {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.no-sessions {
+  text-align: center;
+  padding: 30px;
+  color: #7f8c8d;
+}
+
+/* Form styling */
+.add-session-form {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 24px;
+  margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.add-session-form h4 {
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-group {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #34495e;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #dcdfe6;
+  border-radius: 6px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #3498db;
+}
+
+.resources-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.resources-input input {
+  flex-grow: 1;
+}
+
+.resources-input button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0 15px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.resources-input button:hover {
+  background-color: #2980b9;
+}
+
+.resources-list {
+  margin-top: 10px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.resource-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #edf2f7;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+
+.resource-item button {
+  background: none;
+  border: none;
+  color: #e74c3c;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.cancel-button {
+  background-color: #e6e6e6;
+  color: #606060;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.submit-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancel-button:hover {
+  background-color: #d9d9d9;
+}
+
+.submit-button:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(52, 152, 219, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .week-calendar {
+    grid-template-columns: repeat(4, 1fr);
   }
-  
-  .day-column {
-    background-color: white;
-    border-radius: 0.5rem;
-    padding: 0.75rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    min-height: 150px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .day-column:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  }
-  
-  .day-column.today {
-    border: 2px solid var(--primary-color);
-  }
-  
-  .day-header {
-    text-align: center;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border-color);
-    margin-bottom: 0.5rem;
-  }
-  
-  .day-name {
-    font-weight: 500;
-    color: var(--primary-color);
-  }
-  
-  .day-number {
-    font-size: 1.5rem;
-    font-weight: bold;
-    line-height: 1.2;
-  }
-  
-  .day-month {
-    font-size: 0.85rem;
-    color: var(--text-light);
-  }
-  
-  .day-sessions {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .session-count {
-    font-size: 0.9rem;
-    color: var(--text-light);
-    margin-bottom: 0.5rem;
-  }
-  
-  .session-indicators {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.25rem;
-    justify-content: center;
-  }
-  
-  .session-indicator {
-    width: 0.75rem;
-    height: 0.75rem;
-    border-radius: 50%;
-    background-color: var(--primary-light);
-  }
-  
-  .session-indicator.priority-high {
-    background-color: var(--danger-color);
-  }
-  
-  .session-indicator.priority-medium {
-    background-color: var(--warning-color);
-  }
-  
-  .session-indicator.priority-low {
-    background-color: var(--success-color);
-  }
-  
-  .session-indicator.completed {
-    opacity: 0.5;
-  }
-  
-  .selected-day-sessions {
-    margin-top: 2rem;
-  }
-  
-  .selected-day-sessions h3 {
-    margin-bottom: 1rem;
-    color: var(--primary-color);
-  }
-  
-  .day-session-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .week-calendar {
+    grid-template-columns: repeat(2, 1fr);
   }
   
   .day-session-card {
-    background-color: white;
-    border-radius: 0.5rem;
-    padding: 1rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
     flex-direction: column;
-  }
-  
-  .day-session-card.completed {
-    opacity: 0.7;
-    background-color: #f7f7f7;
+    align-items: flex-start;
+    gap: 10px;
   }
   
   .session-time {
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-  }
-  
-  .session-title {
-    margin-bottom: 0.5rem;
-  }
-  
-  .session-title h4 {
-    color: var(--primary-color);
-    margin-bottom: 0.25rem;
-  }
-  
-  .session-topic {
-    font-size: 0.9rem;
-    color: var(--text-light);
+    width: 100%;
   }
   
   .session-duration {
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
+    padding: 0;
   }
   
-  .session-status {
-    align-self: flex-end;
-    font-size: 0.8rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 1rem;
-    margin-top: auto;
+  .form-row {
+    flex-direction: column;
+    gap: 0;
   }
   
-  .session-status.pending {
-    background-color: #e3f2fd;
-    color: #1976d2;
+  .form-group {
+    width: 100%;
   }
-  
-  .session-status.completed {
-    background-color: #e8f5e9;
-    color: var(--success-color);
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .week-calendar {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .day-column {
-      min-height: 120px;
-    }
-    
-    .selected-day-sessions h3 {
-      font-size: 1.1rem;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .week-calendar {
-      grid-template-columns: 1fr;
-    }
-  }
+}
