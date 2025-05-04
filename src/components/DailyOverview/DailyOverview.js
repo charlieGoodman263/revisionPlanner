@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { useRevision } from '../../contexts/RevisionContext';
-//import './DailyOverview.css';
+import './DailyOverview.css';
 
 const DailyOverview = () => {
   const { getTodaySessions, getWeekSessions, isLoading, error } = useRevision();

@@ -1,5 +1,11 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { mockRevisionSessions } from '../data/mockData';
+import { db, auth } from '../data/firebaseConfig';
+import { 
+  collection, query, where, onSnapshot, 
+  addDoc, updateDoc, deleteDoc, doc, 
+  Timestamp, getDocs
+} from 'firebase/firestore';
 
 // Create the context
 const RevisionContext = createContext();

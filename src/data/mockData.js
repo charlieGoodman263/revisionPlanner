@@ -45,15 +45,15 @@ const getRelativeDate = (dayOffset) => {
     },
     {
       id: '4',
-      subject: 'Chemistry',
-      topic: 'Organic Chemistry - Reactions',
+      subject: 'Further Mathematics',
+      topic: 'test test',
       date: getRelativeDate(1), // Tomorrow
       startTime: '09:00',
       endTime: '10:30',
       duration: 90,
       priority: 'medium',
       completed: false,
-      resources: ['Chemistry Textbook', 'Lab Notes']
+      resources: ['FM Textbook', 'Lab Notes']
     },
     {
       id: '5',
@@ -69,18 +69,6 @@ const getRelativeDate = (dayOffset) => {
     },
     {
       id: '6',
-      subject: 'Biology',
-      topic: 'Cell Biology',
-      date: getRelativeDate(2), // Day after tomorrow
-      startTime: '10:00',
-      endTime: '11:30',
-      duration: 90,
-      priority: 'low',
-      completed: false,
-      resources: ['Biology Textbook Ch 7', 'Lecture Recording']
-    },
-    {
-      id: '7',
       subject: 'Computer Science',
       topic: 'Algorithms - Sorting',
       date: getRelativeDate(3), // 3 days from now
@@ -92,7 +80,7 @@ const getRelativeDate = (dayOffset) => {
       resources: ['Algorithm Notes', 'CodeLab Practice']
     },
     {
-      id: '8',
+      id: '7',
       subject: 'Physics',
       topic: 'Electromagnetism',
       date: getRelativeDate(4), // 4 days from now
@@ -104,7 +92,7 @@ const getRelativeDate = (dayOffset) => {
       resources: ['Physics Textbook Ch 12', 'Problem Set 5']
     },
     {
-      id: '9',
+      id: '8',
       subject: 'Mathematics',
       topic: 'Statistics',
       date: getRelativeDate(5), // 5 days from now
@@ -116,7 +104,7 @@ const getRelativeDate = (dayOffset) => {
       resources: ['Statistics Notes', 'Data Analysis Problems']
     },
     {
-      id: '10',
+      id: '9',
       subject: 'Computer Science',
       topic: 'Databases - SQL',
       date: getRelativeDate(6), // 6 days from now
