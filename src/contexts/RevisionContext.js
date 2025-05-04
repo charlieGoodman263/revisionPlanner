@@ -73,13 +73,13 @@ export const RevisionProvider = ({ children }) => {
   };
 
   // Function to get sessions for the current week
-  const getWeekSessions = () => {
+  const getWeekSessions = (weekOffset) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     
     // Calculate the start of the week (Sunday)
     const startOfWeek = new Date(today);
-    startOfWeek.setDate(today.getDate() - today.getDay());
+    startOfWeek.setDate(today.getDate() - today.getDay() + (weekOffset * 7));
     
     // Calculate the end of the week (Saturday)
     const endOfWeek = new Date(startOfWeek);
