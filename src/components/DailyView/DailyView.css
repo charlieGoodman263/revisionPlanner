@@ -1,0 +1,142 @@
+/* DailyView.css - Styles for Daily View Component */
+
+.daily-view {
+    padding: 1rem 0;
+  }
+  
+  .session-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .session-card {
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .session-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .session-card.completed {
+    opacity: 0.7;
+    background-color: #f7f7f7;
+  }
+  
+  .session-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+  }
+  
+  .session-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+  }
+  
+  .session-time {
+    font-weight: bold;
+    color: var(--text-light);
+  }
+  
+  .session-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+  }
+  
+  .complete-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+  
+  .complete-btn:hover {
+    background-color: var(--primary-dark);
+  }
+  
+  .complete-btn.completed {
+    background-color: var(--success-color);
+  }
+  
+  .session-details {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+  }
+  
+  .detail-item {
+    margin-bottom: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .detail-label {
+    font-weight: 500;
+    color: var(--text-light);
+    min-width: 80px;
+  }
+  
+  .priority-tag {
+    text-transform: capitalize;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  
+  .priority-high .priority-tag {
+    background-color: #ffebee;
+    color: var(--danger-color);
+  }
+  
+  .priority-medium .priority-tag {
+    background-color: #fff8e1;
+    color: var(--warning-color);
+  }
+  
+  .priority-low .priority-tag {
+    background-color: #e8f5e9;
+    color: var(--success-color);
+  }
+  
+  .resources-list {
+    list-style-position: inside;
+    padding-left: 0.5rem;
+  }
+  
+  .resources-list li {
+    margin-bottom: 0.25rem;
+  }
+  
+  .no-sessions {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-light);
+    background-color: #f9f9f9;
+    border-radius: 0.5rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .session-header {
+      flex-direction: column;
+    }
+    
+    .session-time {
+      margin-top: 0.5rem;
+    }
+  }

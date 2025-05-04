@@ -1,0 +1,188 @@
+/* WeeklyView.css - Styles for Weekly View Component */
+
+.week-calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .day-column {
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .day-column:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .day-column.today {
+    border: 2px solid var(--primary-color);
+  }
+  
+  .day-header {
+    text-align: center;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 0.5rem;
+  }
+  
+  .day-name {
+    font-weight: 500;
+    color: var(--primary-color);
+  }
+  
+  .day-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1.2;
+  }
+  
+  .day-month {
+    font-size: 0.85rem;
+    color: var(--text-light);
+  }
+  
+  .day-sessions {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .session-count {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+  }
+  
+  .session-indicators {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    justify-content: center;
+  }
+  
+  .session-indicator {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background-color: var(--primary-light);
+  }
+  
+  .session-indicator.priority-high {
+    background-color: var(--danger-color);
+  }
+  
+  .session-indicator.priority-medium {
+    background-color: var(--warning-color);
+  }
+  
+  .session-indicator.priority-low {
+    background-color: var(--success-color);
+  }
+  
+  .session-indicator.completed {
+    opacity: 0.5;
+  }
+  
+  .selected-day-sessions {
+    margin-top: 2rem;
+  }
+  
+  .selected-day-sessions h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+  }
+  
+  .day-session-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+  
+  .day-session-card {
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .day-session-card.completed {
+    opacity: 0.7;
+    background-color: #f7f7f7;
+  }
+  
+  .session-time {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  
+  .session-title {
+    margin-bottom: 0.5rem;
+  }
+  
+  .session-title h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.25rem;
+  }
+  
+  .session-topic {
+    font-size: 0.9rem;
+    color: var(--text-light);
+  }
+  
+  .session-duration {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .session-status {
+    align-self: flex-end;
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 1rem;
+    margin-top: auto;
+  }
+  
+  .session-status.pending {
+    background-color: #e3f2fd;
+    color: #1976d2;
+  }
+  
+  .session-status.completed {
+    background-color: #e8f5e9;
+    color: var(--success-color);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .week-calendar {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .day-column {
+      min-height: 120px;
+    }
+    
+    .selected-day-sessions h3 {
+      font-size: 1.1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .week-calendar {
+      grid-template-columns: 1fr;
+    }
+  }

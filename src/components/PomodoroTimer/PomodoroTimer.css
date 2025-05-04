@@ -1,0 +1,98 @@
+/* PomodoroTimer.css - Styles for Pomodoro Timer Component */
+
+.pomodoro-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  .timer-display {
+    margin: 2rem 0;
+  }
+  
+  .timer-circle {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .timer-circle.work {
+    background-color: #e57373;
+    color: white;
+  }
+  
+  .timer-circle.shortBreak {
+    background-color: #81c784;
+    color: white;
+  }
+  
+  .timer-circle.longBreak {
+    background-color: #64b5f6;
+    color: white;
+  }
+  
+  .time {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .mode-label {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  
+  .cycle-indicator {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: var(--text-light);
+  }
+  
+  .timer-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .timer-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .start-stop {
+    background-color: #4caf50;
+    color: white;
+    min-width: 100px;
+  }
+  
+  .reset {
+    background-color: #ff9800;
+    color: white;
+  }
+  
+  .skip {
+    background-color: #9e9e9e;
+    color: white;
+  }
+  
+  .mode-selector {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .mode-button {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    background-color: #f5faf5;
+  }
